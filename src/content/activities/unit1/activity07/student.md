@@ -1,24 +1,18 @@
 ``` c++
-// Guardar el valor 5 en el registro A
 @5
-D=A // D = 5
+D=A 
 
-// Guardar el valor 10 en el registro D
 @10
-D=A // D = 10
+D=A 
 
-// Sumar el contenido de A y D
 @5
-D=D+A // D = D + A (D = 10 + 5 = 15)
+D=D+A 
 
-// Restar 3 del contenido de D
 @3
-D=D-A // D = D - 3 (D = 15 - 3 = 12)
+D=D-A 
 
-// Guardar el resultado en la memoria en la dirección 10
 @10
-M=D // M[10] = D (M[10] = 12)
-
+M=D 
 ```
 
 ![image](https://github.com/user-attachments/assets/0ad61806-6f2d-4649-ae03-14afa845796f)
