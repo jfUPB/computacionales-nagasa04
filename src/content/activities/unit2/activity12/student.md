@@ -1,490 +1,284 @@
-## Ejemplos de Conceptos de Programación en Alto Nivel y Ensamblador:
+1. Condicionales
 
-**1. Condicionales:**
-
-**Alto Nivel (C):**
-
-```c
-#include <stdio.h>
-
-int main() {
-  int numero = 10;
-
-  if (numero > 5) {
-    printf("El número es mayor que 5\n");
-  } else {
-    printf("El número es menor o igual que 5\n");
-  }
-
-  return 0;
+Código en C#:
+```
+int a = 5;
+int b = 10;
+if (a < b)
+{
+    a = b;
 }
 ```
 
-**Ensamblador:**
-
-```assembly
-(inicio)
-@numero
-D=M
-@5
-D=D-A
-@mayor
-D;JGT
-@menor
-0;JMP
-
-(mayor)
-@mensaje_mayor
+Código en ensamblador Hack:
+```
+@5              // Carga 5 en el registro D
 D=A
-@imprimir
-0;JMP
+@a
+M=D             // a = 5
 
-(menor)
-@mensaje_menor
+@10             // Carga 10 en el registro D
 D=A
-@imprimir
-0;JMP
+@b
+M=D             // b = 10
 
-(mensaje_mayor)
-A=100 // Dirección del mensaje "El número es mayor que 5\n"
-0;JMP
+@a
+D=M             // D = a
+@b
+D=D-M           // D = a - b
 
-(mensaje_menor)
-A=108 // Dirección del mensaje "El número es menor o igual que 5\n"
-0;JMP
-
-(imprimir)
-// Código para imprimir el mensaje
-.
-.
-.
+@set_a_to_b
+D;JLT           // Si D < 0 (a < b), salta a set_a_to_b
 
 @fin
-0;JMP
+0;JMP           // Salta al final
 
-(numero)
-A=10
-0;JMP
+(set_a_to_b)
+@b
+D=M             // D = b
+@a
+M=D             // a = b
 
 (fin)
-0;JMP
 ```
 
-**2. Ciclos While:**
-
-**Alto Nivel (C):**
-
-```c
-#include <stdio.h>
-
-int main() {
-  int i = 0;
-
-  while (i < 10) {
-    printf("%d ", i);
+2. Ciclos While
+   
+Código en C#:
+```
+int i = 0;
+while (i < 5)
+{
     i++;
-  }
-
-  return 0;
 }
 ```
 
-**Ensamblador:**
-
-```assembly
-(inicio)
-@i
-D=M
-@10
-D=D-A
-@bucle
-D;JLT
-@fin
-0;JMP
-
-(bucle)
-@i
-D=M
-@imprimir
-0;JMP
-
-(imprimir)
-// Código para imprimir el valor de i
-.
-.
-.
-
-@i
-M=M+1
-@inicio
-0;JMP
-
-(i)
-A=0
-0;JMP
-
-(fin)
-0;JMP
+Código en ensamblador Hack:
 ```
-
-**3. Ciclos For:**
-
-**Alto Nivel (C):**
-
-```c
-#include <stdio.h>
-
-int main() {
-  for (int i = 0; i < 5; i++) {
-    printf("%d ", i);
-  }
-
-  return 0;
-}
-```
-
-**Ensamblador:**
-
-```assembly
-(inicio)
+@0
+D=A
 @i
-M=0
-@bucle
-0;JMP
+M=D             // i = 0
 
-(bucle)
+(while_condition)
 @i
 D=M
 @5
-D=D-A
-@fin
-D;JGE
-@imprimir
-0;JMP
-
-(imprimir)
-// Código para imprimir el valor de i
-.
-.
-.
+D=D-A           // D = i - 5
+@end_while
+D;JGE           // Si i >= 5, termina el ciclo
 
 @i
-M=M+1
-@bucle
-0;JMP
+M=M+1           // i++
 
-(i)
-A=0
-0;JMP
+@while_condition
+0;JMP           // Repite el ciclo
 
-(fin)
-0;JMP
+(end_while)
 ```
 
-**4. Escritura de Variables por medio de Punteros:**
+3. Ciclos For
 
-**Alto Nivel (C):**
-
-```c
-#include <stdio.h>
-
-int main() {
-  int numero = 10;
-  int *ptr = &numero;
-
-  *ptr = 20;
-
-  printf("El valor de numero es: %d\n", numero);
-
-  return 0;
+Código en C#:
+```
+for (int j = 0; j < 5; j++)
+{
+    j = j + 2;
 }
 ```
 
-**Ensamblador:**
+Código en ensamblador Hack:
+```
+@0
+D=A
+@j
+M=D             // j = 0
 
-```assembly
-(inicio)
-@numero
+(for_condition)
+@j
+D=M
+@5
+D=D-A           // D = j - 5
+@end_for
+D;JGE           // Si j >= 5, termina el ciclo
+
+@j
+M=M+2           // j = j + 2
+
+@for_condition
+0;JMP           // Repite el ciclo
+
+(end_for)
+```
+
+4. Escritura de Variables por medio de Punteros
+
+Código en C#:
+```
+int x = 10;
+int* ptr = &x;
+*ptr = 20;  // Escribir por medio del puntero
+```
+
+Código en ensamblador Hack:
+```
+@10
+D=A
+@x
+M=D             // x = 10
+
+@x
 D=A
 @ptr
-M=D
+M=D             // ptr = &x
+
 @20
 D=A
 @ptr
-A=M
-M=D
-@numero
-D=M
-@imprimir
-0;JMP
+A=M             // Accede a la dirección almacenada en ptr
+M=D             // *ptr = 20
+```
+5. Lectura de Variables por medio de Punteros
 
-(imprimir)
-// Código para imprimir el valor de numero
-.
-.
-.
-
-@fin
-0;JMP
-
-(numero)
-A=10
-0;JMP
-
-(ptr)
-A=0
-0;JMP
-
-(fin)
-0;JMP
+Código en C#:
+```
+int y = 30;
+int* p = &y;
+int z = *p;  // Leer por medio del puntero
 ```
 
-**5. Lectura de Variables por medio de Punteros:**
-
-**Alto Nivel (C):**
-
-```c
-#include <stdio.h>
-
-int main() {
-  int numero = 10;
-  int *ptr = &numero;
-
-  printf("El valor de numero es: %d\n", *ptr);
-
-  return 0;
-}
+Código en ensamblador Hack:
 ```
-
-**Ensamblador:**
-
-```assembly
-(inicio)
-@numero
+@30
 D=A
-@ptr
-M=D
-@ptr
-A=M
-D=M
-@imprimir
-0;JMP
+@y
+M=D             // y = 30
 
-(imprimir)
-// Código para imprimir el valor de *ptr
-.
-.
-.
-
-@fin
-0;JMP
-
-(numero)
-A=10
-0;JMP
-
-(ptr)
-A=0
-0;JMP
-
-(fin)
-0;JMP
-```
-
-**6. Manipulación de un Arreglo por medio de Punteros:**
-
-**Alto Nivel (C):**
-
-```c
-#include <stdio.h>
-
-int main() {
-  int arreglo[5] = {1, 2, 3, 4, 5};
-  int *ptr = arreglo;
-
-  for (int i = 0; i < 5; i++) {
-    printf("%d ", *ptr);
-    ptr++;
-  }
-
-  return 0;
-}
-```
-
-**Ensamblador:**
-
-```assembly
-(inicio)
-@arreglo
+@y
 D=A
-@ptr
-M=D
-@i
-M=0
-@bucle
-0;JMP
+@p
+M=D             // p = &y
 
-(bucle)
-@i
-D=M
-@5
-D=D-A
-@fin
-D;JGE
-@imprimir
-0;JMP
+@p
+A=M             // Accede a la dirección almacenada en p
+D=M             // D = *p
+@z
+M=D             // z = *p
+```
+6. Manipulación de un Arreglo por medio de Punteros
 
-(imprimir)
-@ptr
-A=M
-D=M
-// Código para imprimir el valor de *ptr
-.
-.
-.
-
-@ptr
-M=M+1
-@i
-M=M+1
-@bucle
-0;JMP
-
-(i)
-A=0
-0;JMP
-
-(fin)
-0;JMP
-
-(arreglo)
-A=100 // Dirección del inicio del arreglo
-0;JMP
-
-(ptr)
-A=0
-0;JMP
+Código en C#:
+```
+int[] arr = {1, 2, 3, 4, 5};
+int* p = &arr[0];
+*p = 10;  // Cambiar el primer elemento del arreglo
 ```
 
-**7. Llamado a Funciones con Parámetros:**
-
-**Alto Nivel (C):**
-
-```c
-#include <stdio.h>
-
-void sumar(int a, int b) {
-  printf("La suma de %d y %d es: %d\n", a, b, a + b);
-}
-
-int main() {
-  sumar(5, 10);
-
-  return 0;
-}
+Código en ensamblador Hack:
 ```
-
-**Ensamblador:**
-
-```assembly
-(inicio)
+@1
+D=A
+@arr
+M=D             // arr[0] = 1
+@2
+D=A
+@arr+1
+M=D             // arr[1] = 2
+@3
+D=A
+@arr+2
+M=D             // arr[2] = 3
+@4
+D=A
+@arr+3
+M=D             // arr[3] = 4
 @5
 D=A
-@R0
-M=D
+@arr+4
+M=D             // arr[4] = 5
+
+@arr
+D=A
+@p
+M=D             // p = &arr[0]
+
 @10
 D=A
-@R1
-M=D
+@p
+A=M             // Accede a la dirección almacenada en p
+M=D             // *p = 10
+```
+7. Llamado a Funciones con Parámetros
+
+Código en C#:
+```
+int Sumar(int a, int b)
+{
+    return a + b;
+}
+
+int resultado = Sumar(3, 4);
+```
+
+Código en ensamblador Hack:
+```
+@3
+D=A
+@a
+M=D             // a = 3
+
+@4
+D=A
+@b
+M=D             // b = 4
+
 @sumar
 0;JMP
 
+(retorno_sumar)
+@resultado
+M=D             // resultado = a + b
+
 (sumar)
-@R0
+@a
 D=M
-@R1
-D=D+M
-@imprimir
-0;JMP
+@b
+D=D+M           // D = a + b
 
-(imprimir)
-// Código para imprimir la suma
-.
-.
-.
-
-@fin
-0;JMP
-
-(fin)
-0;JMP
+@retorno_sumar
+0;JMP           // Retorna a la llamada
 ```
+8. Llamado a Funciones con Retorno de Parámetros
 
-**8. Llamado a Funciones con Retorno de Parámetros:**
-
-**Alto Nivel (C):**
-
-```c
-#include <stdio.h>
-
-int multiplicar(int a, int b) {
-  return a * b;
+Código en C#:
+```
+int Cuadrado(int n)
+{
+    return n * n;
 }
 
-int main() {
-  int resultado = multiplicar(5, 10);
-  printf("El resultado de la multiplicación es: %d\n", resultado);
-
-  return 0;
-}
+int resultado = Cuadrado(5);
 ```
 
-**Ensamblador:**
-
-```assembly
-(inicio)
+Código en ensamblador Hack:
+```
 @5
 D=A
-@R0
-M=D
-@10
-D=A
-@R1
-M=D
-@multiplicar
+@n
+M=D             // n = 5
+
+@cuadrado
 0;JMP
 
-(multiplicar)
-@R0
-D=M
-@R1
-D=D*M
-@R2
-M=D
-@fin_multiplicar
-0;JMP
-
-(fin_multiplicar)
-@R2
-D=M
+(retorno_cuadrado)
 @resultado
-M=D
-@imprimir
-0;JMP
+M=D             // resultado = n * n
 
-(imprimir)
-// Código para imprimir el resultado
-.
-.
-.
+(cuadrado)
+@n
+D=M
+D=D*M           // D = n * n
 
-@fin
-0;JMP
-
-(resultado)
-A=0
-0;JMP
-
-(fin)
-0;JMP
+@retorno_cuadrado
+0;JMP           // Retorna a la llamada
 ```
