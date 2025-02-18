@@ -5,7 +5,37 @@ Ambos programas realizan la misma tarea: sumar los números del **1** al **100**
 **Traducción a ensamblador del ciclo `for`:**
 
 ```assembly
-
+@0
+D=A
+@sum
+M=D
+@1
+D=A
+@i
+M=D
+(LOOP)
+    @i
+    D=M
+    @100
+    D=D-A
+    @END
+    D;JGT
+    @END
+    0;JMP
+    @sum
+    D=M
+    @i
+    D=D+M
+    @sum
+    M=D
+    @i
+    D=M
+    @1
+    D=D+A
+    @i
+    M=D
+    @LOOP
+    0;JMP
 ```
 
 **Comparación de las versiones en ensamblador:**
