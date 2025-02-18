@@ -5,11 +5,22 @@ int *p;
 p = &a;
 b = *p;
 
+//Ensamblador
 @10
-M=A
+D=A      
+@a
+M=D      
 @5
-M=D
+D=A   
+@b
+M=D       
+@a
+D=A  
 @p
-p=A
-D=p
+M=D       
+@p
+A=M       
+D=M      
+@b
+M=D     
 ```
