@@ -1,44 +1,47 @@
 ``` c#
-string binaryString = @"0100000000000000
-1110110000010000
-0000000000010000
-1110001100001000
-0110000000000000
-1111110000010000
-0000000000010011
-1110001100000101
-0000000000010000
-1111110000010000
-0100000000000000
-1110010011010000
-0000000000000100
-1110001100000110
-0000000000010000
-1111110010101000
-1110101010001000
-0000000000000100
-1110101010000111
-0000000000010000
-1111110000010000
-0110000000000000
-1110010011010000
-0000000000000100
-1110001100000011
-0000000000010000
-1111110000100000
-1110111010001000
-0000000000010000
-1111110111001000
-0000000000000100
-1110101010000111";
+using System;
 
-string[] binaryLines = binaryString.Split('\n');
-List<byte> bytes = new List<byte>();
-
-foreach (string line in binaryLines)
+class Program
 {
-    bytes.Add(Convert.ToByte(line, 2));
-}
+    // Constantes para la pantalla y el teclado
+    const int SCREEN_SIZE = 8192;  // Pantalla de 512x256 píxeles, con cada posición representando 16 píxeles
+    static int[] SCREEN = new int[SCREEN_SIZE];  // Arreglo que representa la pantalla
+    static int KBD;  // Variable que simula la entrada del teclado
 
-byte[] byteArray = bytes.ToArray();
+    // Variables del programa
+    static int[] memory = new int[100];  // Espacio de memoria simulado
+    static int D;  // Registro D
+
+    static void Main(string[] args)
+    {
+        // Simulación del programa en ensamblador
+
+        // @16
+        D = memory[16];  // D = M[16]
+
+        // @16
+        D = D - memory[16];  // D = D - M[16]
+
+        // @96
+        D = memory[96];  // D = M[96]
+
+        // @19
+        D = D - memory[19];  // D = D - M[19]
+
+        // @16
+        D = memory[16];  // D = M[16]
+
+        // @16
+        memory[16] = memory[16] + 1;  // M[16] = M[16] + 1
+
+        // @4
+        D = memory[4];  // D = M[4]
+
+        // @16
+        D = memory[16];  // D = M[16]
+
+        // Fin del programa
+        Console.WriteLine($"Final del programa. Registro D = {D}");
+    }
+}
 ```
