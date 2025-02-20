@@ -1,4 +1,4 @@
-1. Condicionales
+##### 1. Condicionales
 
 Código en C#:
 ```
@@ -12,37 +12,29 @@ if (a < b)
 
 Código en ensamblador Hack:
 ```
-@5              // Carga 5 en el registro D
+@5              
 D=A
 @a
-M=D             // a = 5
-
-@10             // Carga 10 en el registro D
+M=D            
+@10             
 D=A
 @b
-M=D             // b = 10
-
+M=D           
 @a
-D=M             // D = a
+D=M          
 @b
-D=D-M           // D = a - b
-
+D=D-M         
 @set_a_to_b
-D;JLT           // Si D < 0 (a < b), salta a set_a_to_b
-
+D;JLT         
 @fin
-0;JMP           // Salta al final
-
-(set_a_to_b)
+0;JMP           
 @b
-D=M             // D = b
+D=M            
 @a
-M=D             // a = b
-
-(fin)
+M=D             
 ```
 
-2. Ciclos While
+##### 2. Ciclos While
    
 Código en C#:
 ```
@@ -58,26 +50,20 @@ Código en ensamblador Hack:
 @0
 D=A
 @i
-M=D             // i = 0
-
-(while_condition)
+M=D            
 @i
 D=M
 @5
-D=D-A           // D = i - 5
+D=D-A          
 @end_while
-D;JGE           // Si i >= 5, termina el ciclo
-
+D;JGE          
 @i
-M=M+1           // i++
-
+M=M+1           
 @while_condition
-0;JMP           // Repite el ciclo
-
-(end_while)
+0;JMP           
 ```
 
-3. Ciclos For
+##### 3. Ciclos For
 
 Código en C#:
 ```
@@ -92,32 +78,26 @@ Código en ensamblador Hack:
 @0
 D=A
 @j
-M=D             // j = 0
-
-(for_condition)
+M=D             
 @j
 D=M
 @5
-D=D-A           // D = j - 5
+D=D-A        
 @end_for
-D;JGE           // Si j >= 5, termina el ciclo
-
+D;JGE           
 @j
-M=M+2           // j = j + 2
-
+M=M+2       
 @for_condition
-0;JMP           // Repite el ciclo
-
-(end_for)
+0;JMP          
 ```
 
-4. Escritura de Variables por medio de Punteros
+##### 4. Escritura de Variables por medio de Punteros
 
 Código en C#:
 ```
 int x = 10;
 int* ptr = &x;
-*ptr = 20;  // Escribir por medio del puntero
+*ptr = 20;  
 ```
 
 Código en ensamblador Hack:
@@ -125,26 +105,24 @@ Código en ensamblador Hack:
 @10
 D=A
 @x
-M=D             // x = 10
-
+M=D           
 @x
 D=A
 @ptr
-M=D             // ptr = &x
-
+M=D            
 @20
 D=A
 @ptr
-A=M             // Accede a la dirección almacenada en ptr
-M=D             // *ptr = 20
+A=M         
+M=D             
 ```
-5. Lectura de Variables por medio de Punteros
+##### 5. Lectura de Variables por medio de Punteros
 
 Código en C#:
 ```
 int y = 30;
 int* p = &y;
-int z = *p;  // Leer por medio del puntero
+int z = *p;  
 ```
 
 Código en ensamblador Hack:
@@ -152,26 +130,24 @@ Código en ensamblador Hack:
 @30
 D=A
 @y
-M=D             // y = 30
-
+M=D            
 @y
 D=A
 @p
-M=D             // p = &y
-
+M=D            
 @p
-A=M             // Accede a la dirección almacenada en p
-D=M             // D = *p
+A=M            
+D=M           
 @z
-M=D             // z = *p
+M=D         
 ```
-6. Manipulación de un Arreglo por medio de Punteros
+##### 6. Manipulación de un Arreglo por medio de Punteros
 
 Código en C#:
 ```
 int[] arr = {1, 2, 3, 4, 5};
 int* p = &arr[0];
-*p = 10;  // Cambiar el primer elemento del arreglo
+*p = 10;  
 ```
 
 Código en ensamblador Hack:
@@ -179,36 +155,34 @@ Código en ensamblador Hack:
 @1
 D=A
 @arr
-M=D             // arr[0] = 1
+M=D            
 @2
 D=A
 @arr+1
-M=D             // arr[1] = 2
+M=D
 @3
 D=A
 @arr+2
-M=D             // arr[2] = 3
+M=D 
 @4
 D=A
 @arr+3
-M=D             // arr[3] = 4
+M=D
 @5
 D=A
 @arr+4
-M=D             // arr[4] = 5
-
+M=D            
 @arr
 D=A
 @p
-M=D             // p = &arr[0]
-
+M=D           
 @10
 D=A
 @p
-A=M             // Accede a la dirección almacenada en p
-M=D             // *p = 10
+A=M        
+M=D         
 ```
-7. Llamado a Funciones con Parámetros
+##### 7. Llamado a Funciones con Parámetros
 
 Código en C#:
 ```
@@ -225,30 +199,24 @@ Código en ensamblador Hack:
 @3
 D=A
 @a
-M=D             // a = 3
-
+M=D           
 @4
 D=A
 @b
-M=D             // b = 4
-
+M=D            
 @sumar
 0;JMP
-
-(retorno_sumar)
 @resultado
-M=D             // resultado = a + b
-
+M=D            
 (sumar)
 @a
 D=M
 @b
-D=D+M           // D = a + b
-
+D=D+M          
 @retorno_sumar
-0;JMP           // Retorna a la llamada
+0;JMP          
 ```
-8. Llamado a Funciones con Retorno de Parámetros
+##### 8. Llamado a Funciones con Retorno de Parámetros
 
 Código en C#:
 ```
@@ -265,20 +233,14 @@ Código en ensamblador Hack:
 @5
 D=A
 @n
-M=D             // n = 5
-
+M=D             
 @cuadrado
 0;JMP
-
-(retorno_cuadrado)
 @resultado
-M=D             // resultado = n * n
-
-(cuadrado)
+M=D           
 @n
 D=M
-D=D*M           // D = n * n
-
+D=D*M         
 @retorno_cuadrado
-0;JMP           // Retorna a la llamada
+0;JMP        
 ```
