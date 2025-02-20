@@ -10,7 +10,7 @@ if (a < b)
 }
 ```
 
-Código en ensamblador Hack:
+Código en ensamblador:
 ```
 @5              
 D=A
@@ -45,7 +45,7 @@ while (i < 5)
 }
 ```
 
-Código en ensamblador Hack:
+Código en ensamblador:
 ```
 @0
 D=A
@@ -73,7 +73,7 @@ for (int j = 0; j < 5; j++)
 }
 ```
 
-Código en ensamblador Hack:
+Código en ensamblador:
 ```
 @0
 D=A
@@ -100,7 +100,7 @@ int* ptr = &x;
 *ptr = 20;  
 ```
 
-Código en ensamblador Hack:
+Código en ensamblador:
 ```
 @10
 D=A
@@ -125,7 +125,7 @@ int* p = &y;
 int z = *p;  
 ```
 
-Código en ensamblador Hack:
+Código en ensamblador:
 ```
 @30
 D=A
@@ -150,7 +150,7 @@ int* p = &arr[0];
 *p = 10;  
 ```
 
-Código en ensamblador Hack:
+Código en ensamblador:
 ```
 @1
 D=A
@@ -194,7 +194,7 @@ int Sumar(int a, int b)
 int resultado = Sumar(3, 4);
 ```
 
-Código en ensamblador Hack:
+Código en ensamblador:
 ```
 @3
 D=A
@@ -228,7 +228,7 @@ int Cuadrado(int n)
 int resultado = Cuadrado(5);
 ```
 
-Código en ensamblador Hack:
+Código en ensamblador:
 ```
 @5
 D=A
