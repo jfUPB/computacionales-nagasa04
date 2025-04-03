@@ -1,5 +1,3 @@
-**Análisis de la Programación Orientada a Objetos en C++**
-
 **1. Análisis de la clase `ofApp` en memoria**
 - **Hipótesis:** Se espera ver la instancia de `ofApp` con una lista de punteros a `Particle*` en memoria.
 - **Observaciones:** La instancia de `ofApp` existe en memoria solo en tiempo de ejecución, con referencias a los objetos `Particle*`.
