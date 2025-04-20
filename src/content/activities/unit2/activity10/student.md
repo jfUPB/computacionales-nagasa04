@@ -1,0 +1,43 @@
+*Codigo Ensamblador*
+```assembly
+@KBD     
+D=M        
+@pantalla   
+0;JMP
+@inicio    
+0;JMP
+    @112
+    D=D-M      
+    @pintar
+    D;JEQ  
+    @KBD
+    D=M         
+    @98
+    D=D-M       
+    @borrar
+    D;JEQ       
+    @retorno_pantalla
+    0;JMP
+    @SCREEN     
+    D=A
+    @loop_pintar  
+    M=-1      
+    D=D+1       
+    @8192        
+    D=D-A        
+    @loop_pintar
+    D;JLT         
+    @retorno_pantalla
+    0;JMP         
+    @SCREEN      
+    D=A
+    @loop_borrar 
+    M=0         
+    D=D+1        
+    @8192       
+    D=D-A        
+    @loop_borrar
+    D;JLT       
+    @retorno_pantalla
+    0;JMP    
+```
